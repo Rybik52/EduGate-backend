@@ -17,33 +17,34 @@ export default factories.createCoreController(
     async search(ctx) {
       try {
         const { query = "" } = ctx.request.query;
+        const searchTerms = (query as string).trim().split(/\s+/);
 
         const visitors = (await strapi.entityService.findMany(
           "api::visitor.visitor",
           {
             filters: {
-              $or: [
+              $or: searchTerms.flatMap((term) => [
                 {
                   surname: {
-                    $containsi: query as string,
+                    $containsi: term,
                   },
                 },
                 {
                   firstName: {
-                    $containsi: query as string,
+                    $containsi: term,
                   },
                 },
                 {
                   lastName: {
-                    $containsi: query as string,
+                    $containsi: term,
                   },
                 },
                 {
                   email: {
-                    $containsi: query as string,
+                    $containsi: term,
                   },
                 },
-              ],
+              ]),
             },
             populate: {
               persone_roles: {
