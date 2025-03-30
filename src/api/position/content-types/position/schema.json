@@ -1,0 +1,27 @@
+{
+  "kind": "collectionType",
+  "collectionName": "positions",
+  "info": {
+    "singularName": "position",
+    "pluralName": "positions",
+    "displayName": "Должность",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "visitors": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::visitor.visitor",
+      "inversedBy": "positions"
+    }
+  }
+}

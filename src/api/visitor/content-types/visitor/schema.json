@@ -1,0 +1,72 @@
+{
+  "kind": "collectionType",
+  "collectionName": "visitors",
+  "info": {
+    "singularName": "visitor",
+    "pluralName": "visitors",
+    "displayName": "Посетитель",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "surname": {
+      "type": "string",
+      "required": true
+    },
+    "firstName": {
+      "type": "string",
+      "required": true
+    },
+    "lastName": {
+      "type": "string"
+    },
+    "email": {
+      "type": "email",
+      "required": true
+    },
+    "blocked": {
+      "type": "boolean",
+      "default": false,
+      "required": false
+    },
+    "persone_roles": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::persone-role.persone-role",
+      "mappedBy": "visitor"
+    },
+    "locations": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::location.location",
+      "mappedBy": "posetitels"
+    },
+    "departaments": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::departament.departament",
+      "mappedBy": "posetitelis"
+    },
+    "positions": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::position.position",
+      "mappedBy": "visitors"
+    },
+    "students_groups": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::students-group.students-group",
+      "mappedBy": "posetitels"
+    },
+    "attendances": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::attendance.attendance",
+      "mappedBy": "visitor"
+    }
+  }
+}

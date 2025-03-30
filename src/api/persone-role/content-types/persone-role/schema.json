@@ -1,0 +1,27 @@
+{
+  "kind": "collectionType",
+  "collectionName": "persone_roles",
+  "info": {
+    "singularName": "persone-role",
+    "pluralName": "persone-roles",
+    "displayName": "Роль",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "visitor": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::visitor.visitor",
+      "inversedBy": "persone_roles"
+    }
+  }
+}

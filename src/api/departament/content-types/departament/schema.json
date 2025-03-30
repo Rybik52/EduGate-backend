@@ -1,0 +1,27 @@
+{
+  "kind": "collectionType",
+  "collectionName": "departaments",
+  "info": {
+    "singularName": "departament",
+    "pluralName": "departaments",
+    "displayName": "Департамент",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "unique": true,
+      "required": true
+    },
+    "posetitelis": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::visitor.visitor",
+      "inversedBy": "departaments"
+    }
+  }
+}

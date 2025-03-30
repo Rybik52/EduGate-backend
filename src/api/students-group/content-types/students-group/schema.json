@@ -1,0 +1,33 @@
+{
+  "kind": "collectionType",
+  "collectionName": "students_groups",
+  "info": {
+    "singularName": "students-group",
+    "pluralName": "students-groups",
+    "displayName": "Студенчиская группа",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "posetitels": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::visitor.visitor",
+      "inversedBy": "students_groups"
+    },
+    "attendances": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::attendance.attendance",
+      "mappedBy": "student_group"
+    }
+  }
+}

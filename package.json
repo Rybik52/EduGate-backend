@@ -1,0 +1,35 @@
+{
+  "name": "backend-cms",
+  "version": "0.1.0",
+  "private": true,
+  "description": "A Strapi application",
+  "license": "MIT",
+  "author": {
+    "name": "Kolyakin Nikita"
+  },
+  "scripts": {
+    "build": "strapi build",
+    "deploy": "strapi deploy",
+    "develop": "strapi develop",
+    "start": "strapi start",
+    "strapi": "strapi"
+  },
+  "dependencies": {
+    "@strapi/plugin-cloud": "5.11.3",
+    "@strapi/plugin-graphql": "^5.11.3",
+    "@strapi/plugin-users-permissions": "5.11.3",
+    "@strapi/strapi": "5.11.3",
+    "pg": "8.14.1",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "react-router-dom": "^6.0.0",
+    "styled-components": "^6.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0 <=20.x.x",
+    "npm": ">=6.0.0"
+  },
+  "strapi": {
+    "uuid": "ccc7d848-8291-434c-9924-c5c837d0b72a"
+  }
+}
