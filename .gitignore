@@ -9,6 +9,15 @@ Icon
 .Spotlight-V100
 .Trashes
 ._*
+.vscode
+.vscode-oss
+.vscode-insiders
+.sass-cache
+.node_repl_history
+.pnpm-debug.log*
+.pnpm-store
+.yarn
+.yarnrc.yml
 
 
 ############################
