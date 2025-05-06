@@ -32,12 +32,6 @@
       "default": false,
       "required": false
     },
-    "persone_roles": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::persone-role.persone-role",
-      "mappedBy": "visitor"
-    },
     "locations": {
       "type": "relation",
       "relation": "manyToMany",
@@ -67,6 +61,20 @@
       "relation": "oneToMany",
       "target": "api::attendance.attendance",
       "mappedBy": "visitor"
+    },
+    "avatar": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "persone_roles": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::persone-role.persone-role",
+      "inversedBy": "visitors"
     }
   }
 }

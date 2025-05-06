@@ -17,11 +17,11 @@
       "required": true,
       "unique": true
     },
-    "visitor": {
+    "visitors": {
       "type": "relation",
-      "relation": "manyToOne",
+      "relation": "manyToMany",
       "target": "api::visitor.visitor",
-      "inversedBy": "persone_roles"
+      "mappedBy": "persone_roles"
     }
   }
 }

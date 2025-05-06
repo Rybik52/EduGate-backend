@@ -500,7 +500,7 @@ export interface ApiPersoneRolePersoneRole extends Struct.CollectionTypeSchema {
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    visitor: Schema.Attribute.Relation<'manyToOne', 'api::visitor.visitor'>;
+    visitors: Schema.Attribute.Relation<'manyToMany', 'api::visitor.visitor'>;
   };
 }
 
@@ -589,6 +589,7 @@ export interface ApiVisitorVisitor extends Struct.CollectionTypeSchema {
       'oneToMany',
       'api::attendance.attendance'
     >;
+    avatar: Schema.Attribute.Media<'images'>;
     blocked: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -611,7 +612,7 @@ export interface ApiVisitorVisitor extends Struct.CollectionTypeSchema {
       'api::location.location'
     >;
     persone_roles: Schema.Attribute.Relation<
-      'oneToMany',
+      'manyToMany',
       'api::persone-role.persone-role'
     >;
     positions: Schema.Attribute.Relation<
