@@ -439,6 +439,52 @@ export interface ApiDepartamentDepartament extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiInvitationLinkInvitationLink
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'invitation_links';
+  info: {
+    displayName: '\u041F\u0440\u0438\u0433\u043B\u0430\u0441\u0438\u0442\u0435\u043B\u044C\u043D\u0430\u044F \u0441\u0441\u044B\u043B\u043A\u0430';
+    pluralName: 'invitation-links';
+    singularName: 'invitation-link';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    created_by_user: Schema.Attribute.Relation<
+      'manyToOne',
+      'plugin::users-permissions.user'
+    >;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    link_status: Schema.Attribute.Enumeration<
+      [
+        '\u041D\u0430 \u0440\u0430\u0441\u0441\u043C\u043E\u0442\u0440\u0435\u043D\u0438\u0438',
+        '\u041E\u0434\u043E\u0431\u0440\u0435\u043D\u043E',
+        '\u041E\u0442\u043A\u0430\u0437\u0430\u043D\u043E',
+      ]
+    > &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'\u041D\u0430 \u0440\u0430\u0441\u0441\u043C\u043E\u0442\u0440\u0435\u043D\u0438\u0438'>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::invitation-link.invitation-link'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    token: Schema.Attribute.UID & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    validFrom: Schema.Attribute.Date & Schema.Attribute.Required;
+    validTo: Schema.Attribute.Date & Schema.Attribute.Required;
+    visitor: Schema.Attribute.Relation<'oneToOne', 'api::visitor.visitor'>;
+    visitor_data: Schema.Attribute.JSON & Schema.Attribute.Required;
+  };
+}
+
 export interface ApiLocationLocation extends Struct.CollectionTypeSchema {
   collectionName: 'locations';
   info: {
@@ -628,6 +674,10 @@ export interface ApiVisitorVisitor extends Struct.CollectionTypeSchema {
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    visitor_link: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::invitation-link.invitation-link'
+    >;
   };
 }
 
@@ -1086,12 +1136,16 @@ export interface PluginUsersPermissionsUser
   };
   options: {
     draftAndPublish: false;
-    timestamps: true;
   };
   attributes: {
+    avatar: Schema.Attribute.Media<'images'>;
     blocked: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
     confirmationToken: Schema.Attribute.String & Schema.Attribute.Private;
     confirmed: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+    created_user_links: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::invitation-link.invitation-link'
+    >;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1142,6 +1196,7 @@ declare module '@strapi/strapi' {
       'admin::user': AdminUser;
       'api::attendance.attendance': ApiAttendanceAttendance;
       'api::departament.departament': ApiDepartamentDepartament;
+      'api::invitation-link.invitation-link': ApiInvitationLinkInvitationLink;
       'api::location.location': ApiLocationLocation;
       'api::persone-role.persone-role': ApiPersoneRolePersoneRole;
       'api::position.position': ApiPositionPosition;

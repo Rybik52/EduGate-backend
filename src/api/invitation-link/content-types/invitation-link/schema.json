@@ -1,0 +1,52 @@
+{
+  "kind": "collectionType",
+  "collectionName": "invitation_links",
+  "info": {
+    "singularName": "invitation-link",
+    "pluralName": "invitation-links",
+    "displayName": "Пригласительная ссылка"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "token": {
+      "type": "uid",
+      "required": true
+    },
+    "link_status": {
+      "type": "enumeration",
+      "enum": [
+        "На рассмотрении",
+        "Одобрено",
+        "Отказано"
+      ],
+      "required": true,
+      "default": "На рассмотрении"
+    },
+    "validFrom": {
+      "required": true,
+      "type": "date"
+    },
+    "validTo": {
+      "type": "date",
+      "required": true
+    },
+    "visitor_data": {
+      "type": "json",
+      "required": true
+    },
+    "created_by_user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "created_user_links"
+    },
+    "visitor": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::visitor.visitor",
+      "inversedBy": "visitor_link"
+    }
+  }
+}

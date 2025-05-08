@@ -23,7 +23,8 @@
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-router-dom": "^6.0.0",
-    "styled-components": "^6.0.0"
+    "styled-components": "^6.0.0",
+    "uuid": "^11.1.0"
   },
   "engines": {
     "node": ">=18.0.0 <=20.x.x",
@@ -31,5 +32,8 @@
   },
   "strapi": {
     "uuid": "ccc7d848-8291-434c-9924-c5c837d0b72a"
+  },
+  "devDependencies": {
+    "@types/uuid": "^10.0.0"
   }
 }
